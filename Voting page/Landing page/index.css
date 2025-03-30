@@ -1,0 +1,37 @@
+body {
+    background-color: #f8f9fa;
+}
+ .home-container h2{
+  font-size: 50px;
+
+}
+.home-container .abt-ourPlatform{
+    font-size: 20px;
+}
+
+.btn-custom {
+    background-color: #008037;
+    color: white;
+}
+.btn-custom:hover {
+    background-color: #005f27;
+}
+.nav-custom {
+    background-color: #008037;
+}
+.footer {
+    background-color: #008037;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top-right-radius: 40px;
+    border-top-left-radius: 40px;
+}
+
+.navbar {
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+}

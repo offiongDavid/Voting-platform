@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+
+        .sidebar {
+            height: 130vh;
+            background-color: #028A0F;
+            padding-top: 20px;
+            color: white;
+            border-top-right-radius: 30px;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px 20px;
+        }
+
+        .sidebar a:hover {
+            background-color: #026B0C;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+            padding: 20px;
+        }
+
+        .manifesto-speech {
+            font-size: 15px;
+            color: #FFC107;
+        }
+
+        .voteBox {
+            width: 100px;
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .cand-info {
+            font-family: "Josefin Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="d-flex">
+        <div class="sidebar col-md-2 ">
+            <img src="/Images/Caleb.jpeg" class="mb-2 rounded-circle mx-auto d-block" width="70">
+            <h4 class="text-center"> #CALEBDECIDES</h4>
+
+            <hr>
+            <a href="#dashboard" onclick="showSection('dashboard')">Dashboard</a>
+            
+            <a href="#candidatesProfile" onclick="showSection('candidatesProfile')">Candidate Profile</a>
+            <a href="#positions" onclick="showSection('positions')">Positions</a>
+            <a href="#results" onclick="showSection('results')">Results Collation</a>
+            <a href="#admin" onclick="showSection('admin')">Admin</a>
+            <a href="/Voting page/Admin page/AdminLogin.html">Log Out</a>
+        </div>
+        <div class="content col-md-9">
+            <div id="dashboard" class="section">
+                <div class="d-flex justify-content-between mb-3">
+                    <h2>Welcome Admin</h2>
+                    <div>
+                        <img src="/Images/user (2).png" width="50" alt="">
+                        <span>Admin</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h5>Admin Overview</h5>
+                    <p>Manage Candidate's Profile, candidates, positions, and results from here.</p>
+                </div>
+            </div>
+
+
+            <div id="candidatesProfile" class="section" style="display: none;">
+                <div class="d-flex justify-content-between">
+                    <h2>Candidate's Profile</h2>
+                    <div>
+                        <img src="/Images/user (2).png" width="50" alt="">
+                        <span>Admin</span>
+                    </div>
+                </div>
+
+                <h3 class="cand-info">Candidate Information</h3>
+                <div class="card w-75">
+                    <label>Name</label>
+                    <input type="text" class="form-control" placeholder="Enter candidate name">
+
+                    <div class=" gap-3 mt-2 mb-2">
+                        <label>Matric Number</label>
+                        <input type="text" class="form-control" placeholder="Matric number">
+
+                        <label>Level</label> <br>
+                        <input type="text" class="form-control" placeholder="e.g 100">
+                    </div>
+
+                    <label>College</label>
+                    <select class="form-control">
+                        <option>COPAS</option>
+                        <option>CASMAS</option>
+                        <option>COLENSMA</option>
+                    </select>
+
+                    <label>Department</label>
+                    <input type="text" class="form-control" placeholder="Department">
+                     
+
+                    <label>Position</label>
+                    <select class="form-control" required>
+                        <option>--Select Position--</option>
+                        <option>President</option>
+                        <option>Academic Director</option>
+                        <option>Social Director</option>
+                        
+
+                    </select>
+                    
+
+                    <label>Upload of Candidate's Manifesto</label>
+                    <p class="manifesto-speech">Your manifesto is your voice. Make it count!!!</p>
+
+                    <textarea name="manifesto" class="form-control" id=""></textarea>
+
+                    <label>Upload Candidate Image</label>
+                    <input type="file" class="form-control">
+                    <button class="btn btn-success mt-3">Upload</button>
+                </div>
+            </div>
+
+            <div id="positions" class="section" style="display: none;">
+                <div class="d-flex justify-content-between mb-3">
+                    <h2>Manage Positions</h2>
+                    <div>
+                        <img src="/Images/user (2).png" width="50" alt="">
+                        <span>Admin</span>
+                    </div>
+                </div>
+            
+                <div class="card">
+                    <h5>Add New Position</h5>
+                    <form id="positionForm">
+                        <label>Position Name</label>
+                        <input type="text" class="form-control" id="positionName" placeholder="Enter position name" required>
+                        
+                        <button type="button" class="btn btn-success mt-3" onclick="addPosition()">Add Position</button>
+                    </form>
+                </div>
+            
+                <div class="card mt-4">
+                    <h5>Existing Positions</h5>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Position Name</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="positionsTable">
+                            <!-- Positions will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <div id="results" class="section" style="display: none;">
+
+                <div class="d-flex justify-content-between mb-3">
+                    <h2>Results Collation</h2>
+                    <div>
+                        <img src="/Images/user (2).png" width="50" alt="">
+                        <span>Admin</span>
+                    </div>
+                </div>
+
+                <form>
+                    <div class="card">
+                        <label>College</label>
+                        <select class="form-control" required>
+                            <option>--Select College--</option>
+                            <option>COPAS</option>
+                            <option>CASMAS</option>
+                            <option>COLENSMA</option>
+                        </select>
+                        <label>Position</label>
+                        <select class="form-control" required>
+                            <option>--Select Position--</option>
+                            <option>President</option>
+                            <option>Academic Director</option>
+                            <option>Social Director</option>
+                        </select>
+
+                        <label>Nominee</label>
+                        <select class="form-control" placeholder="select" required>
+                            <option>--Select Nominee--</option>
+                            <option>John Doe</option>
+                            <option>Mary Ayomide</option>
+                            <option>Desmond Vincent</option>
+                        </select>
+
+                        <label>Total Number of Votes</label>
+                        <input type="number" class="voteBox border  form-control py-2" required>
+
+                        <button class="btn btn-success mt-3">Upload Results</button>
+                    </div>
+                    <form>
+            </div>
+
+            <div id="admin" class="section" style="display: none;">
+                <div class="d-flex justify-content-between mb-3">
+                    <h2>Admin Panel</h2>
+                    <div>
+                        <img src="/Images/user (2).png" width="50" alt="">
+                        <span>Admin</span>
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card text-center p-3">
+                            <h5>Total Positions</h5>
+                            <h3 id="totalPositions">0</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center p-3">
+                            <h5>Total Candidates</h5>
+                            <h3 id="totalCandidates">0</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center p-3">
+                            <h5>Total Admins</h5>
+                            <h3 id="totalAdmins">1</h3>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="card mt-4">
+                    <h5>Manage Admins</h5>
+                    <form id="adminForm">
+                        <label>Admin Name</label>
+                        <input type="text" class="form-control" id="adminName" placeholder="Enter admin name" required>
+                        
+                        <button type="button" class="btn btn-success mt-3" onclick="addAdmin()">Add Admin</button>
+                    </form>
+                </div>
+                
+            
+                <div class="card mt-4">
+                    <h5>System Settings</h5>
+                    <label>Voting Status</label>
+                    <select class="form-control" id="votingStatus">
+                        <option value="open">Open</option>
+                        <option value="closed">Closed</option>
+                    </select>
+                    <button class="btn btn-primary mt-3" onclick="updateVotingStatus()">Update</button>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+        }
+       
+
+
+        let positions = JSON.parse(localStorage.getItem('positions')) || [];
+    let admins = JSON.parse(localStorage.getItem('admins')) || ['Super Admin'];
+
+    function addPosition() {
+        const positionName = document.getElementById('positionName').value;
+        if (positionName.trim() === '') {
+            alert('Please enter a position name');
+            return;
+        }
+        
+        positions.push(positionName);
+        localStorage.setItem('positions', JSON.stringify(positions));
+        updatePositionsTable();
+        updateAdminStats();
+        document.getElementById('positionForm').reset();
+    }
+
+    function updatePositionsTable() {
+        const tableBody = document.getElementById('positionsTable');
+        tableBody.innerHTML = '';
+        
+        positions.forEach((position, index) => {
+            tableBody.innerHTML += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${position}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editPosition(${index})">Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deletePosition(${index})">Delete</button>
+                    </td>
+                </tr>`;
+        });
+    }
+
+    function editPosition(index) {
+        const newName = prompt('Edit Position Name:', positions[index]);
+        if (newName) {
+            positions[index] = newName;
+            localStorage.setItem('positions', JSON.stringify(positions));
+            updatePositionsTable();
+        }
+    }
+
+    function deletePosition(index) {
+        if (confirm('Are you sure you want to delete this position?')) {
+            positions.splice(index, 1);
+            localStorage.setItem('positions', JSON.stringify(positions));
+            updatePositionsTable();
+            updateAdminStats();
+        }
+    }
+
+    function addAdmin() {
+        const adminName = document.getElementById('adminName').value;
+        if (adminName.trim() === '') {
+            alert('Please enter an admin name');
+            return;
+        }
+        
+        admins.push(adminName);
+        localStorage.setItem('admins', JSON.stringify(admins));
+        updateAdminStats();
+        document.getElementById('adminForm').reset();
+    }
+
+    function updateVotingStatus() {
+        const status = document.getElementById('votingStatus').value;
+        alert(`Voting status updated to: ${status}`);
+    }
+
+    function updateAdminStats() {
+        document.getElementById('totalPositions').innerText = positions.length;
+        document.getElementById('totalAdmins').innerText = admins.length;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        updatePositionsTable();
+        updateAdminStats();
+    });
+    </script>
+</body>
+
+</html>

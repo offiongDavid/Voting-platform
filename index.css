@@ -1,0 +1,38 @@
+*{
+    box-sizing: border-box;
+   
+   
+}
+body{
+    background: url('Images/pexels-pixabay-256395.jpg');
+    background-attachment: fixed;
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+   background-size: cover;
+}
+.link-1{
+    background-color:rgb(68, 67, 67);
+    cursor: pointer; 
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+
+  
+
+
+}
+.link-1 p{
+    margin-top: 10px;
+}
+.link-1 i{
+    font-size: 20px;
+}
+.link-2{
+    background-color: rgba(59, 6, 6, 0.842);
+    cursor: pointer;
+}
+.mail-link{
+    background-color: rgb(189, 116, 26);
+    color: white;
+}
